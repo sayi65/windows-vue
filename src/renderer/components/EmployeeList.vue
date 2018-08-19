@@ -1,43 +1,163 @@
 <template>
   <div id="wrapper">
-    <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
     <main>
-      <div class="left-side">
-        <span class="title">
-          Welcome to your new project!
-        </span>
-        <system-information></system-information>
-      </div>
-
-      <div class="right-side">
-        <div class="doc">
-          <div class="title">Getting Started</div>
-          <p>
-            electron-vue comes packed with detailed documentation that covers everything from
-            internal configurations, using the project structure, building your application,
-            and so much more.
-          </p>
-          <button @click="open('https://simulatedgreg.gitbooks.io/electron-vue/content/')">Read the Docs</button><br><br>
-        </div>
-        <div class="doc">
-          <div class="title alt">Other Documentation</div>
-          <button class="alt" @click="open('https://electron.atom.io/docs/')">Electron</button>
-          <button class="alt" @click="open('https://vuejs.org/v2/guide/')">Vue.js</button>
-        </div>
-      </div>
+      <el-container>
+        <!-- ヘッダー -->
+        <el-header style="height:80px;">
+          <el-row :gutter="20">
+            <el-col :span="8"><el-input v-model="code" placeholder="社員番号"></el-input></el-col>
+            <el-col :span="8"><el-input v-model="name" placeholder="社員名"></el-input></el-col>
+            <el-col :span="8"><el-input v-model="email" placeholder="メールアドレス"></el-input></el-col>
+          </el-row>
+          <el-row :gutter="24">
+            <el-col :span="24">
+              <div>
+                <router-link :to="{path: '/'}" class="left-side">
+                  <el-button type="info" >戻る</el-button>
+                </router-link>
+                <el-button type="success" plain class="right-side">社員追加</el-button>
+              </div>
+            </el-col>
+          </el-row>
+        </el-header>
+        <!-- テーブル -->
+        <el-main style="margint-top:20px;">
+            <el-table 
+                      stripe
+                      :data="tabledata" 
+                      @row-click="rowClick" 
+                      style="width:100%; margint-top:10px;">
+                <el-table-column
+                    fixed
+                    prop="emp_code"
+                    label="社員番号"
+                    width="100">
+                </el-table-column>
+                 <el-table-column
+                    fixed
+                    prop="emp_name"
+                    label="社員名"
+                    width="200">
+                </el-table-column>
+                <el-table-column
+                    fixed
+                    prop="emp_email"
+                    label="メールアドレス"
+                    width="250">
+                </el-table-column>
+                <el-table-column label="操作">
+                  <template slot-scope="scope">
+                    <el-button
+                      fixed="right"
+                      size="mini"
+                      type="danger"
+                      @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                </template>
+                </el-table-column>
+            </el-table>
+        </el-main>
+      </el-container>
     </main>
   </div>
 </template>
 
 <script>
-  import SystemInformation from './LandingPage/SystemInformation'
-
   export default {
-    name: 'empliyeelist',
-    components: { SystemInformation },
+    name: 'employeelist',
+    data () {
+      return {
+        code: '',
+        name: '',
+        email: '',
+        tabledata: [{
+          emp_code: '2016-05-03',
+          emp_name: 'Tom',
+          emp_email: 'No. 189, Grove St, Los Angeles'
+        }, {
+          emp_code: '2016-05-02',
+          emp_name: 'Tom',
+          emp_email: 'No. 189, Grove St, Los Angeles'
+        }, {
+          emp_code: '2016-05-04',
+          emp_name: 'Tom',
+          emp_email: 'No. 189, Grove St, Los Angeles'
+        }, {
+          emp_code: '2016-05-04',
+          emp_name: 'Tom',
+          emp_email: 'No. 189, Grove St, Los Angeles'
+        }, {
+          emp_code: '2016-05-04',
+          emp_name: 'Tom',
+          emp_email: 'No. 189, Grove St, Los Angeles'
+        }, {
+          emp_code: '2016-05-04',
+          emp_name: 'Tom',
+          emp_email: 'No. 189, Grove St, Los Angeles'
+        }, {
+          emp_code: '2016-05-04',
+          emp_name: 'Tom',
+          emp_email: 'No. 189, Grove St, Los Angeles'
+        }, {
+          emp_code: '2016-05-04',
+          emp_name: 'Tom',
+          emp_email: 'No. 189, Grove St, Los Angeles'
+        }, {
+          emp_code: '2016-05-04',
+          emp_name: 'Tom',
+          emp_email: 'No. 189, Grove St, Los Angeles'
+        }, {
+          emp_code: '2016-05-04',
+          emp_name: 'Tom',
+          emp_email: 'No. 189, Grove St, Los Angeles'
+        }, {
+          emp_code: '2016-05-04',
+          emp_name: 'Tom',
+          emp_email: 'No. 189, Grove St, Los Angeles'
+        }, {
+          emp_code: '2016-05-04',
+          emp_name: 'Tom',
+          emp_email: 'No. 189, Grove St, Los Angeles'
+        }, {
+          emp_code: '2016-05-04',
+          emp_name: 'Tom',
+          emp_email: 'No. 189, Grove St, Los Angeles'
+        }, {
+          emp_code: '2016-05-04',
+          emp_name: 'Tom',
+          emp_email: 'No. 189, Grove St, Los Angeles'
+        }, {
+          emp_code: '2016-05-04',
+          emp_name: 'Tom',
+          emp_email: 'No. 189, Grove St, Los Angeles'
+        }, {
+          emp_code: '2016-05-04',
+          emp_name: 'Tom',
+          emp_email: 'No. 189, Grove St, Los Angeles'
+        }, {
+          emp_code: '2016-05-04',
+          emp_name: 'Tom',
+          emp_email: 'No. 189, Grove St, Los Angeles'
+        }, {
+          emp_code: '2016-05-04',
+          emp_name: 'Tom',
+          emp_email: 'No. 189, Grove St, Los Angeles'
+        }, {
+          emp_code: '2016-05-04',
+          emp_name: 'Tom',
+          emp_email: 'No. 189, Grove St, Los Angeles'
+        }, {
+          emp_code: '2016-05-01',
+          emp_name: 'Tom',
+          emp_email: 'No. 189, Grove St, Los Angeles'
+        }]
+      }
+    },
     methods: {
-      open (link) {
-        this.$electron.shell.openExternal(link)
+      rowClick: function (row, event, column) {
+        console.log(row)
+        console.log(event)
+        console.log(column)
+        this.$router.push({path: 'employeedetail', query: { emp_code: '123' }})
       }
     }
   }
@@ -61,15 +181,9 @@
         rgba(255, 255, 255, 1) 40%,
         rgba(229, 229, 229, .9) 100%
       );
-    height: 100vh;
-    padding: 60px 80px;
+    height: 100%;
+    padding: 30px 50px;
     width: 100vw;
-  }
-
-  #logo {
-    height: auto;
-    margin-bottom: 20px;
-    width: 420px;
   }
 
   main {
@@ -79,50 +193,23 @@
 
   main > div { flex-basis: 50%; }
 
+  .el-row {
+    margin-bottom: 10px;
+  }
+  .el-row:last-child {
+    margin-bottom: 0;
+  }
+  .el-col {
+    border-radius: 4px;
+  }
+
+  .right-side {
+      float: right;
+      margin-bottom: 10px;
+  }
+
   .left-side {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .welcome {
-    color: #555;
-    font-size: 23px;
+    float: left;
     margin-bottom: 10px;
-  }
-
-  .title {
-    color: #2c3e50;
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 6px;
-  }
-
-  .title.alt {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-
-  .doc p {
-    color: black;
-    margin-bottom: 10px;
-  }
-
-  .doc button {
-    font-size: .8em;
-    cursor: pointer;
-    outline: none;
-    padding: 0.75em 2em;
-    border-radius: 2em;
-    display: inline-block;
-    color: #fff;
-    background-color: #4fc08d;
-    transition: all 0.15s ease;
-    box-sizing: border-box;
-    border: 1px solid #4fc08d;
-  }
-
-  .doc button.alt {
-    color: #42b983;
-    background-color: transparent;
   }
 </style>

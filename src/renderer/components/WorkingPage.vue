@@ -1,11 +1,15 @@
 <template>
-  <div id="wrapper">
+  <div id="home">
     <main>
       <el-container>
         <el-header>
-            <div class="left-side"><router-link tag="a" :to="{ path: 'empliyeelist'}">社員一覧</router-link></div>
+            <div class="left-side">
+              <router-link :to="{ path: 'employeelist'}">
+                <el-button type="primary">社員一覧</el-button>
+              </router-link>
+            </div>
             <div class="right-side">
-                <router-link to="/addWorktime">
+                <router-link :to="{path : 'addWorktime'}">
                     <el-button type="primary">残業申請</el-button>
                 </router-link>
             </div>
@@ -83,7 +87,7 @@
 
   body { font-family: 'Source Sans Pro', sans-serif; }
 
-  #wrapper {
+  #home {
     background:
       radial-gradient(
         ellipse at top left,
@@ -91,7 +95,7 @@
         rgba(229, 229, 229, .9) 100%
       );
     height: 100vh;
-    padding: 60px 80px;
+    padding: 20px 50px;
     width: 100vw;
   }
 
