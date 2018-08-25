@@ -3,6 +3,7 @@
     <main>
       <el-container>
           <el-main style="margint-top:20px;">
+              <el-form :model="ruleForm" status-icon ref="ruleForm" label-width="120px">
                 <el-row :gutter="20">
                     <el-col :span="4">
                         <router-link :to="{path: '/'}" class="left-side">
@@ -23,16 +24,19 @@
                         </div>
                     </el-col>
                 </el-row>
-                <!-- 残業申請あり -->
                 <el-row :gutter="20">
                     <el-col :span="12" :offset="6">
-                        <el-form :model="ruleForm" status-icon ref="ruleForm" label-width="120px">
-                            <el-form-item label="社員番号">
-                                <el-select v-model="ruleForm.emp_code" placeholder="社員を選択">
-                                    <el-option label="001" value="shanghai"></el-option>
-                                    <el-option label="002" value="beijing"></el-option>
-                                </el-select>
-                            </el-form-item>
+                        <el-form-item label="社員番号">
+                            <el-select v-model="ruleForm.emp_code" placeholder="社員を選択">
+                                <el-option label="001" value="shanghai"></el-option>
+                                <el-option label="002" value="beijing"></el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <!-- 残業申請あり -->
+                <el-row :gutter="20" v-if="hasWork">
+                    <el-col :span="12" :offset="6">
                             <el-form-item label="プロジェクト名">
                                 <el-input v-model="ruleForm.pj_name" clearable></el-input>
                             </el-form-item>
@@ -50,13 +54,17 @@
                                     placeholder="帰宅予定時間">
                                 </el-time-select>
                             </el-form-item>
-                            <el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="20">
+                    <el-col :span="12" :offset="6">
+                        <el-form-item>
                                 <el-button type="primary" @click="onSubmit">保存</el-button>
                             </el-form-item>
-                        </el-form>
                     </el-col>
                 </el-row>
                 <!-- 残業申請あり -->
+                </el-form>
           </el-main>
       </el-container>
     </main>
@@ -69,6 +77,7 @@
     data () {
       return {
         isWork: false,
+        hasWork: false,
         addForm: {
 
         },
@@ -83,9 +92,7 @@
     methods: {
       addtime: function () {
         console.log(this.isWork)
-        if (this.isWork) {
-
-        }
+        this.hasWork = this.isWork
       },
 
       onSubmit: function () {
