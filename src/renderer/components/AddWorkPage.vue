@@ -11,7 +11,7 @@
                         </router-link>
                     </el-col>
                     <el-col :span="12" :offset="5">
-                        <div class="grid-content bg-purple">    
+                        <div class="grid-content">    
                             <el-switch
                                 style="display: block"
                                 v-model="isWork"
@@ -47,9 +47,9 @@
                                 <el-time-select
                                     v-model="ruleForm.over_time"
                                     :picker-options="{
-                                        start: '08:30',
+                                        start: '08:45',
                                         step: '00:15',
-                                        end: '18:30'
+                                        end: '24:00'
                                     }"
                                     placeholder="帰宅予定時間">
                                 </el-time-select>
